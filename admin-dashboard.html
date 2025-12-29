@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - School Website</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <section id="admin-dashboard" class="content-section">
+        <div class="dashboard-header">
+            <h2>Shree Melamilap Primary Schooll – Admin Panel</h2>
+            <button class="btn-logout btn btn-danger">Logout</button>
+        </div>
+        <div class="dashboard-layout">
+            <aside class="sidebar">
+                <button data-view="admin-home" class="active">Home</button>
+                <button data-view="admin-student">Student</button>
+                <button data-view="admin-teacher">Teacher</button>
+                <button data-view="admin-notices">Notices</button>
+                <button data-view="admin-gallery">Gallery</button>
+                <button data-view="admin-achievers">Top Achievers</button>
+            </aside>
+            <div class="dashboard-content" id="admin-content-area">
+                <!-- Admin Views will be injected here -->
+                <p class="text-center">Loading Dashboard...</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Essential Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/admin.js"></script>
+    <script>
+        // Initialize Dashboard
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = authManager.checkSession();
+            if (!user || user.role !== 'admin') {
+                window.location.href = 'index.html';
+                return;
+            }
+            initAdminDashboard();
+        });
+    </script>
+</body>
+
+</html>

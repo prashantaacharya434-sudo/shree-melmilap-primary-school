@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - School Website</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <section id="student-dashboard" class="content-section">
+        <div class="dashboard-header">
+            <h2>Student Dashboard</h2>
+            <button class="btn-logout btn btn-danger">Logout</button>
+        </div>
+        <div class="dashboard-layout">
+            <aside class="sidebar">
+                <button data-view="student-home" class="active">Duties</button>
+                <button data-view="student-teachers">My Teachers</button>
+                <button data-view="student-messenger">Messenger & Group</button>
+                <button data-view="student-profile">My Profile</button>
+            </aside>
+            <div class="dashboard-content" id="student-content-area">
+                <!-- Views -->
+            </div>
+        </div>
+    </section>
+
+    <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/student.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = authManager.checkSession();
+            if (!user || user.role !== 'student') {
+                window.location.href = 'index.html';
+                return;
+            }
+            initStudentDashboard();
+        });
+    </script>
+</body>
+
+</html>
